@@ -27,12 +27,12 @@ async def post(context, *, msg):
       print(channel)
       async with aiohttp.ClientSession() as session:
         async with session.get(img_url) as resp:
-            if resp.status != 200:
-                return await channel.send('Could not download file...')
-            data = io.BytesIO(await resp.read())
-            channel = bot.get_channel(channel_id)
-            await channel.send(file=discord.File(data, 'Bsides_img.png'))
-    else: await channel.send(msg)
+            # if resp.status != 200:
+            #     return await channel.send('Could not download file...')
+            # data = io.BytesIO(await resp.read())
+            # channel = bot.get_channel(channel_id)
+            # await channel.send(file=discord.File(data, 'Bsides_img.png'))
+          await channel.send(img_url)
 
 
 
@@ -68,6 +68,6 @@ async def help(context):
     await context.send("use /post {msg} to post a {msg}} in the #announcement rooom. To add an image in the post, add a URL of the image in the end of the post ")
 
 
-huddle_reminder.start()
+# huddle_reminder.start()
 keep_alive()
 bot.run(os.getenv('TOKEN'))
